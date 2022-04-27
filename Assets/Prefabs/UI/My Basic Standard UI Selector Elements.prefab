@@ -413,8 +413,10 @@ MonoBehaviour:
   mainGraphic: {fileID: 11450052}
   nameText:
     m_uiText: {fileID: 11404786}
+    m_textMeshProUGUI: {fileID: 0}
   useMessageText:
     m_uiText: {fileID: 11465558}
+    m_textMeshProUGUI: {fileID: 0}
   inRangeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   outOfRangeColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   reticleInRange: {fileID: 11473324}
