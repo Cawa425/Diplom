@@ -574,28 +574,32 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
 
             EditorGUI.BeginChangeCheck();
 
-            DialogueEntry entry = currentEntry;
-            bool isStartEntry = (entry == startEntry) || (entry.id == 0);
+            var entry = currentEntry;
+            var isStartEntry = entry == startEntry || entry.id == 0;
 
             EditorGUI.BeginDisabledGroup(true); // Don't let user modify ID. Breaks things way more often than not.
-            entry.id = StringToInt(EditorGUILayout.TextField(new GUIContent("ID", "Internal ID. Change at your own risk."), entry.id.ToString()), entry.id);
+            entry.id = StringToInt(
+                EditorGUILayout.TextField(new GUIContent("ID", "Internal ID. Change at your own risk."),
+                    entry.id.ToString()), entry.id);
             EditorGUI.EndDisabledGroup();
 
             // Title:
             EditorGUI.BeginDisabledGroup(isStartEntry);
-            entry.Title = EditorGUILayout.TextField(new GUIContent("Title", "Optional title for your reference only."), entry.Title);
+            entry.Title = EditorGUILayout.TextField(new GUIContent("Title", "Optional title for your reference only."),
+                entry.Title);
             EditorGUI.EndDisabledGroup();
 
             if (isStartEntry)
-            {
-                EditorGUILayout.HelpBox("This is the START entry. In most cases, you should leave this entry alone and begin your conversation with its child entries.", MessageType.Warning);
-            }
+                EditorGUILayout.HelpBox(
+                    "This is the START entry. In most cases, you should leave this entry alone and begin your conversation with its child entries.",
+                    MessageType.Warning);
 
             // Description:
             var description = Field.Lookup(entry.fields, "Description");
             if (description != null)
             {
-                EditorGUILayout.LabelField(new GUIContent("Description", "Description of this entry; notes for the author"));
+                EditorGUILayout.LabelField(new GUIContent("Description",
+                    "Description of this entry; notes for the author"));
                 description.value = EditorGUILayout.TextArea(description.value);
             }
 
@@ -603,7 +607,8 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
             DrawDialogueEntryParticipants(entry);
 
             // Is this a group or regular entry:
-            entry.isGroup = EditorGUILayout.Toggle(new GUIContent("Group", "Tick to organize children as a group."), entry.isGroup);
+            entry.isGroup = EditorGUILayout.Toggle(new GUIContent("Group", "Tick to organize children as a group."),
+                entry.isGroup);
 
             if (!entry.isGroup)
             {
@@ -613,42 +618,54 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
 
                 // Menu text (including localized if defined in template):
                 var menuText = entry.MenuText;
-                var menuTextLabel = string.IsNullOrEmpty(menuText) ? "Menu Text" : ("Menu Text (" + menuText.Length + " chars)");
-                EditorGUILayout.LabelField(new GUIContent(menuTextLabel, "Response menu text (e.g., short paraphrase). If blank, uses Dialogue Text"));
+                var menuTextLabel = string.IsNullOrEmpty(menuText)
+                    ? "Menu Text"
+                    : "Menu Text (" + menuText.Length + " chars)";
+                EditorGUILayout.LabelField(new GUIContent(menuTextLabel,
+                    "Response menu text (e.g., short paraphrase). If blank, uses Dialogue Text"));
                 entry.MenuText = EditorGUILayout.TextArea(menuText);
                 DrawLocalizedVersions(entry.fields, "Menu Text {0}", false, FieldType.Text);
 
                 // Dialogue text (including localized):
                 var dialogueText = entry.DialogueText;
-                var dialogueTextLabel = string.IsNullOrEmpty(dialogueText) ? "Dialogue Text" : ("Dialogue Text (" + dialogueText.Length + " chars)");
-                EditorGUILayout.LabelField(new GUIContent(dialogueTextLabel, "Line spoken by actor. If blank, uses Menu Text."));
+                var dialogueTextLabel = string.IsNullOrEmpty(dialogueText)
+                    ? "Dialogue Text"
+                    : "Dialogue Text (" + dialogueText.Length + " chars)";
+                EditorGUILayout.LabelField(new GUIContent(dialogueTextLabel,
+                    "Line spoken by actor. If blank, uses Menu Text."));
                 entry.DialogueText = EditorGUILayout.TextArea(dialogueText);
                 DrawLocalizedVersions(entry.fields, "{0}", true, FieldType.Localization);
 
                 if (EditorGUI.EndChangeCheck())
-                {
-                    if (string.Equals(entry.Title, "New Dialogue Entry")) entry.Title = string.Empty;
-                }
+                    if (string.Equals(entry.Title, "New Dialogue Entry"))
+                        entry.Title = string.Empty;
 
                 EditorWindowTools.EditorGUILayoutEndGroup();
 
                 // Sequence (including localized if defined):
                 EditorWindowTools.EditorGUILayoutBeginGroup();
 
-                entry.Sequence = SequenceEditorTools.DrawLayout(new GUIContent("Sequence", "Cutscene played when speaking this entry. If set, overrides Dialogue Manager's Default Sequence. Drag audio clips to add AudioWait() commands."), entry.Sequence, ref sequenceRect, ref sequenceSyntaxState);
+                entry.Sequence = SequenceEditorTools.DrawLayout(
+                    new GUIContent("Sequence",
+                        "Cutscene played when speaking this entry. If set, overrides Dialogue Manager's Default Sequence. Drag audio clips to add AudioWait() commands."),
+                    entry.Sequence, ref sequenceRect, ref sequenceSyntaxState);
                 DrawLocalizedVersions(entry.fields, "Sequence {0}", false, FieldType.Text, true);
 
                 // Response Menu Sequence:
-                bool hasResponseMenuSequence = entry.HasResponseMenuSequence();
+                var hasResponseMenuSequence = entry.HasResponseMenuSequence();
                 if (hasResponseMenuSequence)
                 {
-                    EditorGUILayout.LabelField(new GUIContent("Response Menu Sequence", "Cutscene played during response menu following this entry."));
+                    EditorGUILayout.LabelField(new GUIContent("Response Menu Sequence",
+                        "Cutscene played during response menu following this entry."));
                     entry.ResponseMenuSequence = EditorGUILayout.TextArea(entry.ResponseMenuSequence);
                     DrawLocalizedVersions(entry.fields, "Response Menu Sequence {0}", false, FieldType.Text);
                 }
                 else
                 {
-                    hasResponseMenuSequence = EditorGUILayout.ToggleLeft(new GUIContent("Add Response Menu Sequence", "Tick to add a cutscene that plays during the response menu that follows this entry."), false);
+                    hasResponseMenuSequence = EditorGUILayout.ToggleLeft(
+                        new GUIContent("Add Response Menu Sequence",
+                            "Tick to add a cutscene that plays during the response menu that follows this entry."),
+                        false);
                     if (hasResponseMenuSequence) entry.ResponseMenuSequence = string.Empty;
                 }
 
@@ -658,15 +675,21 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
             // Conditions:
             EditorWindowTools.EditorGUILayoutBeginGroup();
             luaConditionWizard.database = database;
-            entry.conditionsString = luaConditionWizard.Draw(new GUIContent("Conditions", "Optional Lua statement that must be true to use this entry."), entry.conditionsString);
-            int falseConditionIndex = EditorGUILayout.Popup("False Condition Action", GetFalseConditionIndex(entry.falseConditionAction), falseConditionActionStrings);
+            entry.conditionsString =
+                luaConditionWizard.Draw(
+                    new GUIContent("Conditions", "Optional Lua statement that must be true to use this entry."),
+                    entry.conditionsString);
+            var falseConditionIndex = EditorGUILayout.Popup("False Condition Action",
+                GetFalseConditionIndex(entry.falseConditionAction), falseConditionActionStrings);
             entry.falseConditionAction = falseConditionActionStrings[falseConditionIndex];
             EditorWindowTools.EditorGUILayoutEndGroup();
 
             // Script:
             EditorWindowTools.EditorGUILayoutBeginGroup();
             luaScriptWizard.database = database;
-            entry.userScript = luaScriptWizard.Draw(new GUIContent("Script", "Optional Lua code to run when entry is spoken."), entry.userScript);
+            entry.userScript =
+                luaScriptWizard.Draw(new GUIContent("Script", "Optional Lua code to run when entry is spoken."),
+                    entry.userScript);
             EditorWindowTools.EditorGUILayoutEndGroup();
 
             // Other primary fields defined in template:
@@ -677,7 +700,7 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
             if (entryEventFoldout) DrawUnityEvents();
 
             // Notes: (special handling to use TextArea)
-            Field notes = Field.Lookup(entry.fields, "Notes");
+            var notes = Field.Lookup(entry.fields, "Notes");
             if (notes != null)
             {
                 EditorGUILayout.LabelField("Notes");
@@ -685,13 +708,10 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
             }
 
             // Custom inspector code hook:
-            if (customDrawDialogueEntryInspector != null)
-            {
-                customDrawDialogueEntryInspector(database, entry);
-            }
+            if (customDrawDialogueEntryInspector != null) customDrawDialogueEntryInspector(database, entry);
 
             // All Fields foldout:
-            bool changed = EditorGUI.EndChangeCheck();
+            var changed = EditorGUI.EndChangeCheck();
             try
             {
                 EditorGUI.BeginChangeCheck();
@@ -700,37 +720,32 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
                 if (entryFieldsFoldout)
                 {
                     GUILayout.FlexibleSpace();
-                    if (GUILayout.Button(new GUIContent("Template", "Add any missing fields from the template."), EditorStyles.miniButton, GUILayout.Width(68)))
-                    {
-                        ApplyDialogueEntryTemplate(entry.fields);
-                    }
-                    if (GUILayout.Button(new GUIContent("Copy", "Copy these fields to the clipboard."), EditorStyles.miniButton, GUILayout.Width(60)))
-                    {
-                        CopyFields(entry.fields);
-                    }
+                    if (GUILayout.Button(new GUIContent("Template", "Add any missing fields from the template."),
+                            EditorStyles.miniButton, GUILayout.Width(68))) ApplyDialogueEntryTemplate(entry.fields);
+                    if (GUILayout.Button(new GUIContent("Copy", "Copy these fields to the clipboard."),
+                            EditorStyles.miniButton, GUILayout.Width(60))) CopyFields(entry.fields);
                     EditorGUI.BeginDisabledGroup(clipboardFields == null);
-                    if (GUILayout.Button(new GUIContent("Paste", "Paste the clipboard into these fields."), EditorStyles.miniButton, GUILayout.Width(60)))
-                    {
-                        PasteFields(entry.fields);
-                    }
+                    if (GUILayout.Button(new GUIContent("Paste", "Paste the clipboard into these fields."),
+                            EditorStyles.miniButton, GUILayout.Width(60))) PasteFields(entry.fields);
                     EditorGUI.EndDisabledGroup();
-                    if (GUILayout.Button(new GUIContent(" ", "Add new field."), "OL Plus", GUILayout.Width(16))) entry.fields.Add(new Field());
+                    if (GUILayout.Button(new GUIContent(" ", "Add new field."), "OL Plus", GUILayout.Width(16)))
+                        entry.fields.Add(new Field());
                 }
+
                 EditorGUILayout.EndHorizontal();
-                if (entryFieldsFoldout)
-                {
-                    DrawFieldsSection(entry.fields);
-                }
+                if (entryFieldsFoldout) DrawFieldsSection(entry.fields);
             }
             finally
             {
                 changed = EditorGUI.EndChangeCheck() || changed;
             }
+
             if (changed)
             {
                 BuildLanguageListFromFields(entry.fields);
                 SetDatabaseDirty("Dialogue Entry Fields Changed");
             }
+
             return changed;
         }
 

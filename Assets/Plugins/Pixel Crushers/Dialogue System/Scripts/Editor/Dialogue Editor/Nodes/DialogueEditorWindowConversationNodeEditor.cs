@@ -1651,18 +1651,14 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
             EditorZoomArea.End();
             wasShiftDown = Event.current.shift;
 
-            GenericMenu contextMenu = new GenericMenu();
+            var contextMenu = new GenericMenu();
             contextMenu.AddItem(new GUIContent("Create Node"), false, AddChildCallback, null);
             contextMenu.AddItem(new GUIContent("Arrange Nodes..."), false, ArrangeNodesCallback, null);
             contextMenu.AddItem(new GUIContent("Snap All Nodes to Grid"), false, SnapAllNodesToGrid);
             if (IsNodeClipboardEmpty())
-            {
                 contextMenu.AddDisabledItem(new GUIContent("Paste Nodes"));
-            }
             else
-            {
                 contextMenu.AddItem(new GUIContent("Paste Nodes"), false, PasteMultipleEntriesCallback, null);
-            }
             contextMenu.AddItem(new GUIContent("Duplicate Conversation"), false, CopyConversationCallback, null);
             contextMenu.AddItem(new GUIContent("Delete Conversation"), false, DeleteConversationCallback, null);
 
@@ -1702,48 +1698,37 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
             EditorZoomArea.End();
             wasShiftDown = Event.current.shift;
 
-            GenericMenu contextMenu = new GenericMenu();
+            var contextMenu = new GenericMenu();
             contextMenu.AddItem(new GUIContent("Create Child Node"), false, AddChildCallback, entry);
             contextMenu.AddItem(new GUIContent("Make Link"), false, MakeLinkCallback, entry);
-            if ((multinodeSelection.nodes.Count > 1) && (multinodeSelection.nodes.Contains(entry)))
+            if (multinodeSelection.nodes.Count > 1 && multinodeSelection.nodes.Contains(entry))
             {
                 contextMenu.AddItem(new GUIContent("Copy"), false, CopyMultipleEntriesCallback, entry);
                 if (IsNodeClipboardEmpty())
-                {
                     contextMenu.AddDisabledItem(new GUIContent("Paste"));
-                }
                 else
-                {
                     contextMenu.AddItem(new GUIContent("Paste"), false, PasteMultipleEntriesCallback, entry);
-                }
                 contextMenu.AddItem(new GUIContent("Delete"), false, DeleteMultipleEntriesCallback, entry);
             }
             else if (entry == startEntry)
             {
                 contextMenu.AddDisabledItem(new GUIContent("Copy"));
                 if (IsNodeClipboardEmpty())
-                {
                     contextMenu.AddDisabledItem(new GUIContent("Paste"));
-                }
                 else
-                {
                     contextMenu.AddItem(new GUIContent("Paste"), false, PasteEntryCallback, entry);
-                }
                 contextMenu.AddDisabledItem(new GUIContent("Delete"));
             }
             else
             {
                 contextMenu.AddItem(new GUIContent("Copy"), false, CopyEntryCallback, entry);
                 if (IsNodeClipboardEmpty())
-                {
                     contextMenu.AddDisabledItem(new GUIContent("Paste"));
-                }
                 else
-                {
                     contextMenu.AddItem(new GUIContent("Paste"), false, PasteEntryCallback, entry);
-                }
                 contextMenu.AddItem(new GUIContent("Delete"), false, DeleteEntryCallback, entry);
             }
+
             contextMenu.AddItem(new GUIContent("Arrange Nodes..."), false, ArrangeNodesCallback, entry);
             contextMenu.AddItem(new GUIContent("Snap All Nodes to Grid"), false, SnapAllNodesToGrid);
 
