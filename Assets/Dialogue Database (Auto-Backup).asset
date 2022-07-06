@@ -3690,8 +3690,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 300
-        y: 670
+        x: 306.79614
+        y: 621.45636
         width: 160
         height: 30
     - id: 44
@@ -3801,8 +3801,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 300
-        y: 620
+        x: 306.79614
+        y: 571.45636
         width: 160
         height: 30
     - id: 46
@@ -3903,7 +3903,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: SetActive(TextCanvas,true)
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 5
@@ -3927,7 +3927,7 @@ MonoBehaviour:
         height: 30
     entryGroups: []
     canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.85000026
+    canvasZoom: 1.0300001
   syncInfo:
     syncActors: 0
     syncItems: 0

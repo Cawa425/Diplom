@@ -64,7 +64,7 @@ MonoBehaviour:
   - id: 2
     fields:
     - title: Name
-      value: Kid
+      value: Anna
       type: 0
       typeString: 
     - title: Pictures
@@ -1558,11 +1558,11 @@ MonoBehaviour:
       type: 5
       typeString: CustomFieldType_Actor
     overrideSettings:
-      useOverrides: 0
-      overrideSubtitleSettings: 0
+      useOverrides: 1
+      overrideSubtitleSettings: 1
       showNPCSubtitlesDuringLine: 1
       showNPCSubtitlesWithResponses: 1
-      showPCSubtitlesDuringLine: 0
+      showPCSubtitlesDuringLine: 1
       skipPCSubtitleAfterResponseMenu: 0
       subtitleCharsPerSecond: 30
       minSubtitleSeconds: 2
@@ -1771,7 +1771,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 
+      userScript: Variable["Mark"] = 4
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -1831,7 +1831,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 
+      userScript: Variable["Mark"] = 5
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -1890,7 +1890,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 
+      userScript: Variable["Mark"] = 3
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -1947,7 +1947,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 
+      userScript: Variable["Mark"] = 2
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -2815,7 +2815,7 @@ MonoBehaviour:
         typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: "\u0410\u043D\u044F, \u044F \u043F\u043E\u043D\u0438\u043C\u0430\u044E
-          \u0442\u0432\u043E\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u043E\u042E,
+          \u0442\u0432\u043E\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u043E,
           \u043D\u043E \u0438 \u0442\u044B \u043C\u0435\u043D\u044F \u043F\u043E\u0439\u043C\u0438,
           \u044F \u0441\u043E\u043C\u043D\u0435\u0432\u0430\u044E\u0441\u044C \u0432
           \u043F\u0440\u0430\u0432\u0434\u0438\u0432\u043E\u0441\u0442\u0438 \u0442\u0432\u043E\u0435\u0439
@@ -3091,8 +3091,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 1290
-        y: 370
+        x: 1290.9708
+        y: 369.02914
         width: 160
         height: 30
     - id: 31
@@ -3123,7 +3123,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: AnimatorPlay(Writing,listener);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 5
@@ -3148,7 +3148,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 210
-        y: 370
+        y: 369.0291
         width: 160
         height: 30
     - id: 32
@@ -3170,7 +3170,7 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
-        value: "* \u0410\u043D\u044F \u0434\u043E\u0441\u0442\u0430\u0435\u0442 \u0442\u0435\u043B\u0435\u0444\u043E\u043D
+        value: " *\u0410\u043D\u044F \u0434\u043E\u0441\u0442\u0430\u0435\u0442 \u0442\u0435\u043B\u0435\u0444\u043E\u043D
           \u043F\u043E\u0434 \u043F\u0430\u0440\u0442\u043E\u0439 \u0438 \u043F\u044B\u0442\u0430\u0435\u0442\u0441\u044F
           \u0441\u043F\u0438\u0441\u0430\u0442\u044C*"
         type: 0
@@ -3458,7 +3458,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 948
+        x: 947.0292
         y: 470
         width: 160
         height: 30
@@ -3552,7 +3552,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: AnimatorPlay(Arguing,listener);
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 5
@@ -3690,8 +3690,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 300
-        y: 670
+        x: 343.68933
+        y: 644.7573
         width: 160
         height: 30
     - id: 44
@@ -3783,7 +3783,9 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: 'SetActive(TextCanvas,true);
+
+          {{default}}'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 5
@@ -3801,8 +3803,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 300
-        y: 620
+        x: 232.03885
+        y: 579.2233
         width: 160
         height: 30
     - id: 46
@@ -3903,7 +3905,9 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
-        value: 
+        value: 'SetActive(TextCanvas,true);
+
+          {{default}}'
         type: 0
         typeString: CustomFieldType_Text
       conversationID: 5
@@ -3927,7 +3931,7 @@ MonoBehaviour:
         height: 30
     entryGroups: []
     canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.85000026
+    canvasZoom: 1.0300001
   syncInfo:
     syncActors: 0
     syncItems: 0
@@ -3944,4 +3948,4 @@ MonoBehaviour:
     Item","value":"False","type":2,"typeString":"CustomFieldType_Boolean"}],"locationFields":[{"title":"Name","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Description","value":"","type":0,"typeString":"CustomFieldType_Text"}],"variableFields":[{"title":"Name","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Initial
     Value","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Description","value":"","type":0,"typeString":"CustomFieldType_Text"}],"conversationFields":[{"title":"Title","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Description","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Actor","value":"0","type":5,"typeString":"CustomFieldType_Actor"},{"title":"Conversant","value":"0","type":5,"typeString":"CustomFieldType_Actor"}],"dialogueEntryFields":[{"title":"Title","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Description","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Actor","value":"","type":5,"typeString":"CustomFieldType_Actor"},{"title":"Conversant","value":"","type":5,"typeString":"CustomFieldType_Actor"},{"title":"Menu
     Text","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Dialogue
-    Text","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Sequence","value":"","type":0,"typeString":"CustomFieldType_Text"}],"actorPrimaryFieldTitles":[],"itemPrimaryFieldTitles":[],"questPrimaryFieldTitles":[],"locationPrimaryFieldTitles":[],"variablePrimaryFieldTitles":[],"conversationPrimaryFieldTitles":[],"dialogueEntryPrimaryFieldTitles":[],"npcLineColor":{"r":1.0,"g":0.0,"b":0.0,"a":1.0},"pcLineColor":{"r":0.0,"g":0.0,"b":1.0,"a":1.0},"repeatLineColor":{"r":0.5,"g":0.5,"b":0.5,"a":1.0}}'
+    Text","value":"","type":0,"typeString":"CustomFieldType_Text"},{"title":"Sequence","value":"","type":0,"typeString":"CustomFieldType_Text"}],"actorPrimaryFieldTitles":[],"itemPrimaryFieldTitles":[],"questPrimaryFieldTitles":[],"locationPrimaryFieldTitles":[],"variablePrimaryFieldTitles":[],"conversationPrimaryFieldTitles":[],"dialogueEntryPrimaryFieldTitles":[],"npcLineColor":{"r":1.0,"g":0.0,"b":0.0,"a":1.0},"pcLineColor":{"r":1.0,"g":0.0,"b":0.7836894989013672,"a":1.0},"repeatLineColor":{"r":0.5,"g":0.5,"b":0.5,"a":1.0}}'

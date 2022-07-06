@@ -31,4 +31,6 @@ public class RemarkOpener : MonoBehaviour
         var lastID = DialogueLua.GetVariable("RemarkIdToShow").asInt;
         ShowUI(lastID);
     }
+    
+    public void On
 }

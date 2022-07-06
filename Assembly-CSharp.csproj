@@ -1272,10 +1272,6 @@
       <Project>{667773E4-3409-7D95-A6CA-376491ABC030}</Project>
       <Name>Unity.Mathematics.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="UMotionSourceEditor.csproj">
-      <Project>{BE6020AF-E93C-F16E-D2E8-D80A8E88CA9C}</Project>
-      <Name>UMotionSourceEditor</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.XR.Oculus.Editor.csproj">
       <Project>{DE470EA0-4AC9-E6C4-FDDF-12FC665C68C3}</Project>
       <Name>Unity.XR.Oculus.Editor</Name>
@@ -1287,10 +1283,6 @@
     <ProjectReference Include="Oculus.VR.Editor.csproj">
       <Project>{CAD9788B-5C8F-B01A-129D-E94850182979}</Project>
       <Name>Oculus.VR.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="UMotionSourceApplication.csproj">
-      <Project>{89D2FCDF-2D8C-599A-7E5C-41E0219EB3C7}</Project>
-      <Name>UMotionSourceApplication</Name>
     </ProjectReference>
     <ProjectReference Include="Oculus.Platform.csproj">
       <Project>{48A6B524-3A38-B05A-0EA3-EF5C1EAA8CBD}</Project>
